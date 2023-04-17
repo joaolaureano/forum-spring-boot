@@ -6,6 +6,7 @@ import com.example.forum.repository.IThreadRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -24,7 +25,10 @@ public class ThreadService implements IThreadService{
 
     @Override
     public ThreadModel findById(Integer id){
-        return this.threadRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(ThreadModel.class.getSimpleName()));
+        Optional<ThreadModel> threadModelOptional = this.threadRepository.findById(id);
+        if(threadModelOptional.isEmpty())
+            throw new EntityNotFoundException(ThreadModel.class.getSimpleName());
+        return threadModelOptional.get();
     }
 
     @Override
