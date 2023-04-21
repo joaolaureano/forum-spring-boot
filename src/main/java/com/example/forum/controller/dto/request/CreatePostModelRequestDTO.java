@@ -4,6 +4,8 @@ import com.example.forum.model.PostModel;
 import com.example.forum.model.ThreadModel;
 import lombok.*;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,7 +15,11 @@ import java.time.LocalDateTime;
 @Builder
 public class CreatePostModelRequestDTO {
 
-    String title;
+    @Size(min= 3, max = 255 )
+    @NotNull
+    String commentary;
+
+    @NotNull
     Integer threadId;
 
     public static PostModel toModel(CreatePostModelRequestDTO createPostModelRequestDTO){
@@ -21,7 +27,7 @@ public class CreatePostModelRequestDTO {
                 .builder()
                 .threadModel(ThreadModel.builder().id(createPostModelRequestDTO.threadId).build())
                 .likeCounter(0)
-                .commentary(createPostModelRequestDTO.title)
+                .commentary(createPostModelRequestDTO.commentary)
                 .createdAt(LocalDateTime.now())
                 .build();
     }

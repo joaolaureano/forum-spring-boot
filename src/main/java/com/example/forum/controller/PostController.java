@@ -22,11 +22,11 @@ public class PostController {
         this.postService = postService;
     }
 
-    @GetMapping(value = "/{id}" )
+    @GetMapping(value = "/{threadId}" )
     public ResponseEntity<PostModelListResponseDTO> getById(
-            @PathVariable(value = "id", required = true) Integer id
+            @PathVariable(value = "threadId", required = true) Integer threadId
     ) throws EntityNotFoundException{
-        List<PostModel> postModelList = postService.findByThread(ThreadModel.builder().id(id).build());
+        List<PostModel> postModelList = postService.findByThread(ThreadModel.builder().id(threadId).build());
 
         return new ResponseEntity<>(PostModelListResponseDTO.toResponse(postModelList), HttpStatus.OK);
     }

@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IPostService {
 
-    void save(PostModel postModel);
+    PostModel save(PostModel postModel);
 
     List<PostModel> findByThread(ThreadModel thread);
 }

@@ -24,9 +24,11 @@ public class PostService implements IPostService{
 
 
     @Override
-    public void save(PostModel postModel) {
+    public PostModel save(PostModel postModel) {
         this.threadRepository.findById(postModel.getThreadModel().getId()).orElseThrow(() -> new MappedEntityNotFoundException(PostModel.class.getSimpleName(), ThreadModel.class.getSimpleName(), postModel.getThreadModel().getId()));
-        this.postRepository.save(postModel);
+        PostModel responseModel = this.postRepository.save(postModel);
+
+        return responseModel;
     }
 
     @Override

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IThreadService{
 
-    void save(ThreadModel threadModel);
+    ThreadModel save(ThreadModel threadModel);
     ThreadModel findById(Integer id);
     List<ThreadModel> findAll();
 }

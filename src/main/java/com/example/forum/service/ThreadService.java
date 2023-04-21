@@ -19,8 +19,9 @@ public class ThreadService implements IThreadService{
     }
 
     @Override
-    public void save(ThreadModel threadModel){
-        this.threadRepository.save(threadModel);
+    public ThreadModel save(ThreadModel threadModel){
+        ThreadModel responseModel = this.threadRepository.save(threadModel);
+        return responseModel;
     }
 
     @Override

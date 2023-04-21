@@ -16,11 +16,10 @@ public class PostModelListResponseDTO {
     Integer threadId;
 
     public static PostModelListResponseDTO toResponse(List<PostModel> postModelList){
-        if(postModelList.isEmpty())
-            return null;
+        Integer threadId = postModelList.isEmpty() ? null: postModelList.get(0).getThreadModel().getId();
         return PostModelListResponseDTO.builder()
                 .postModelList(PostModelInformation.toList(postModelList))
-                .threadId(postModelList.get(0).getThreadModel().id)
+                .threadId(threadId)
                 .build();
     }
 

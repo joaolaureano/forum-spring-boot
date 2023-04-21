@@ -30,6 +30,6 @@ public class ExceptionHandlerAdvice {
                         .message(ex.getMessage())
                         .timestamp(LocalDateTime.now())
                         .build(),
-                HttpStatus.NOT_FOUND);
+                HttpStatus.BAD_REQUEST);
     }
 }
